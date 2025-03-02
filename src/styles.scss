@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+:root
+{
+
+    --font-family:'Encode Sans Expanded', sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  font-family: var(--font-family) !important;
+}
+
+.input-style{
+  @apply block py-2.5 px-0 w-full text-sm !text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main;
+}
+
+.label-style{
+@apply absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0];
+}
+
+.button-style{
+  @apply text-white bg-main hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-main;
+}

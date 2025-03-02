@@ -1,0 +1,62 @@
+<div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 justify-center items-center">
+  @for (brand of brands; track $index) {
+    <div class="max-w-sm bg-white rounded-lg shadow-lg">
+      <div>
+        <img
+          class="rounded-t-lg w-full cursor-pointer"
+          [src]="brand.image"
+          (click)="getBrand(brand._id)"
+          alt=""
+        />
+      </div>
+      <div class="p-2">
+        <h5 class="mb-2 text-2xl tracking-tight text-secondary text-center cursor-pointer"
+          (click)="getBrand(brand._id)">
+          {{ brand.name }}
+        </h5>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- Show Loading Indicator -->
+@if (loading) {
+  <div class="fixed inset-0 flex items-center justify-center bg-white/80 z-50">
+    <div class="loader border-4 border-main border-t-transparent w-12 h-12 rounded-full animate-spin"></div>
+  </div>
+}
+
+<!-- Modal Section -->
+@if (showModal && subBrand) {
+  <div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+    <div class="relative bg-white rounded-lg shadow-lg w-full max-w-lg">
+      <!-- Modal Header -->
+      <div class="flex justify-between items-center p-4 border-b">
+        <h3 class="text-xl font-semibold">{{ subBrand.name }}</h3>
+        <button (click)="closeModal()" class="text-gray-500 hover:text-gray-800">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-4 flex items-center justify-between">
+        <div class="w-[50%]">
+          <h2 class="text-main text-4xl mb-3 font-bold">{{ subBrand.name }}</h2>
+          <p class="text-secondary font-bold">{{ subBrand.name.toLocaleLowerCase() }}</p>
+        </div>
+        <div class="w-[50%]">
+          <img [src]="subBrand.image" alt="{{ subBrand.name }}" >
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t flex justify-end">
+        <button (click)="closeModal()" class="bg-main text-white px-4 py-2 rounded-lg">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+}

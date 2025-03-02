@@ -1,0 +1,86 @@
+
+
+<div class="relative overflow-x-auto  rounded-md shadow-md">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-main uppercase bg-gray-50">
+          <tr>
+              <th scope="col" class="px-6 py-3">
+                  Product Id
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Is Paid
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Payment Types
+              </th>
+              <th scope="col" class="px-6 py-3">
+                 Total Price
+              </th>
+              <th scope="col" class="px-6 py-3">
+                View
+             </th>
+          </tr>
+      </thead>
+      @for (order of allOrders; track order.id ;let i =$index) {
+        <tbody>
+          <tr class="bg-white border-b   border-gray-200">
+              <th scope="row" class="px-6 py-4 font-bold text-gray-900   whitespace-nowrap ">
+                  {{order.id}}
+              </th>
+              <td class="px-6 py-4">
+                  {{order.isPaid}}
+              </td>
+              <td class="px-6 py-4">
+                {{order.paymentMethodType}}
+              </td>
+              <td class="px-6 py-4">
+                {{order.totalOrderPrice}}
+              </td>
+              <td class="px-6 py-4">
+               <i (click)="openModal(i)" class="fa fa-eye cursor-pointer"></i>
+              </td>
+          </tr>
+
+      </tbody>
+      }
+
+  </table>
+</div>
+
+@if(showModal){
+  <div
+    class="fixed inset-0 h-screen bg-slate-500 bg-opacity-50 flex z-50 items-center justify-center"
+    (click)="closeModal()"
+  >
+    <div class="bg-white max-w-96 relative overflow-x-auto shadow-md sm:rounded-lg" (click)="$event.stopPropagation()">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-main uppercase bg-gray-100">
+          <tr>
+            <th scope="col" class="px-16 py-3">
+              <span class="sr-only">Image</span>
+            </th>
+            <th scope="col" class="px-6 py-3">Product</th>
+            <th scope="col" class="px-6 py-3">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of cartItems; track $index) {
+            <tr class="bg-white border-b dark:bg-white dark:border-gray-700 border-gray-200 hover:bg-gray-50">
+              <td class="p-4">
+                <img [src]="product.product.imageCover" class="w-16 md:w-32 max-w-full max-h-full" alt="Product Image">
+              </td>
+              <td class="px-6 py-4 font-semibold text-gray-900 dark:text-gray-900">
+                {{product.product.title}}
+              </td>
+              <td class="px-6 py-4 font-semibold text-gray-900 dark:text-gray-900">
+                {{product.price}}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+}
+
+

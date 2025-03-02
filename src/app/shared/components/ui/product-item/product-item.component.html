@@ -1,0 +1,30 @@
+
+<div class="product mb-4 group shadow-lg p-4 px-5 rounded-lg">
+  <a [routerLink]="['/productDetails',product._id]">
+    <img [src] ="product.imageCover" class=" w-full" alt="">
+  <span class="text-main">{{product.category.name}}</span>
+  <h2 class="mb-4">{{product.title.split(" ").splice(0,2).join(" ")}}</h2>
+  <div class="flex justify-between">
+    <p>{{product.price}}</p>
+    <p> <i class="fa fa-star text-[#ffc908]"></i> {{product.ratingsAverage}}</p>
+  </div>
+  </a>
+<div class="flex  justify-center items-center">
+  <app-custom-button (click)="handleAddToCart(product._id)" class="w-[90%] p-2 bg-main rounded-md  text-white mx-auto block text-center  opacity-0 translate-y-[100%]  group-hover:opacity-100 transition-all duration-500  group-hover:translate-y-[0%] mt-2">
+    @if (isloadingButton) {
+      <i class="fa fa-spin  fa-circle-notch"></i>
+    }
+    @else {
+      <p class="text-center">Add to Cart</p>
+    }
+
+  </app-custom-button>
+
+  <app-custom-button class="  ml-4 w-[10%]" (click)="handleAddToWishlist(product._id)">
+    <i class="text-3xl fa-solid fa-heart" [ngClass]="{'text-red-500': product.isInWishlist, 'text-gray-400': !product.isInWishlist}"></i>
+  </app-custom-button>
+</div>
+
+
+
+</div>

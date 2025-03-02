@@ -1,0 +1,12 @@
+
+<input
+  type="text"
+  class="w-[80%] border  border-main  transition duration-150 ease-in-out block mx-auto rounded-md"
+  [(ngModel)]="searchTerm"
+  (input)="filterProducts()"
+  placeholder="E-mail">
+<div class="grid lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3 gap-7 mb-7 mt-3">
+  @for (product of filteredProducts; track $index) {
+      <app-product-item [isloadingButton]="isloadingButton[product._id] || false" (fireAddToCart)="addToCart($event)" (fireAddToWishlist)="addToWishlist($event)" [product]="product"></app-product-item>
+  }
+</div>

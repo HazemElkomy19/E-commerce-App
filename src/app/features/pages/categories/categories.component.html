@@ -1,0 +1,47 @@
+<div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 justify-center items-center">
+  @for (category of categories; track $index) {
+    <div class="max-w-sm bg-white rounded-lg shadow-lg">
+      <div>
+        <img
+          class="rounded-t-lg w-full h-[400px] cursor-pointer"
+          [src]="category.image"
+          alt=""
+          (click)="getRelatedSubCategories(category._id)" />
+      </div>
+      <div class="p-2">
+        <h5
+          class="mb-2 text-2xl font-bold tracking-tight text-secondary dark:text-secondary text-center cursor-pointer"
+          (click)="getRelatedSubCategories(category._id)">
+          {{ category.name }}
+        </h5>
+      </div>
+    </div>
+  }
+</div>
+
+
+@if (selectedCategoryId) {
+  <div  class="mt-6">
+    <h2 class="text-center text-3xl font-semibold text-secondary">Subcategories</h2>
+
+    @if (loading) {
+      <div  class="fixed inset-0  flex items-center justify-center bg-white/80 z-50">
+        <div class="loader border-4 border-main border-t-transparent w-12 h-12 rounded-full animate-spin"></div>
+      </div>
+    }
+
+
+
+    @else  {
+      <div  class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 justify-center items-center mt-4">
+        @for (subCategory of subCategories; track $index) {
+          <div class="max-w-sm bg-white rounded-lg shadow-lg p-4">
+            <h5 class="text-lg font-bold text-center text-main">{{ subCategory.name }}</h5>
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+}
+

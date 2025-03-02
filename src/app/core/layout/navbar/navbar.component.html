@@ -1,0 +1,114 @@
+
+
+<nav class=" bg-nav-bg-color border-gray-200 ">
+  <div class="max-w-screen-xl relative flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="flex items-center justify-center gap-3">
+      <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="images/freshcart-logo.svg" alt="">
+     </a>
+
+     <div class="hidden w-full md:block md:w-auto absolute md:static top-[50px] left-0 z-50" id="navbar-default">
+       <ul class="font-normal flex flex-col  bg-nav-bg-color md:bg-transparent p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 ">
+        @if (isLoggedIn) {
+          <li>
+            <a routerLink="/home" routerLinkActive="!text-main" class="block py-2 px-3 text-secondary  md:bg-transparent md:text-secondary md:p-0" aria-current="page">Home</a>
+          </li>
+          <li class="relative">
+            <a routerLink="/cart" routerLinkActive="!text-main" class="block py-2 px-3 text-secondary md:bg-transparent md:text-secondary md:p-0">
+              Cart
+              @if (cartCount>0) {
+                <span  class="absolute -top-2  -right-4 bg-red-600 text-white text-xs font-bold rounded-full px-2 py-1">
+                  {{ cartCount }}
+                </span>
+              }
+
+            </a>
+          </li>
+
+          <li class="relative">
+            <a routerLink="/wishlist" routerLinkActive="!text-main" class="block py-2 px-3 text-secondary md:bg-transparent md:text-secondary md:p-0">
+              Wishlist
+              @if (wishlistCount>0) {
+                <span  class="absolute -top-2  -right-4 bg-red-600 text-white text-xs font-bold rounded-full px-2 py-1">
+                  {{ wishlistCount }}
+                </span>
+              }
+
+            </a>
+          </li>
+          <li>
+            <a routerLink="/products" routerLinkActive="!text-main" class="block py-2 px-3 text-secondary  md:bg-transparent md:text-secondary md:p-0" aria-current="page">Products</a>
+          </li>
+
+          <li>
+            <a routerLink="/categories" routerLinkActive="!text-main" class="block py-2 px-3 text-secondary  md:bg-transparent md:text-secondary md:p-0" aria-current="page">Categories</a>
+          </li>
+
+          <li>
+            <a routerLink="/brands" routerLinkActive="!text-main" class="block py-2 px-3 text-secondary  md:bg-transparent md:text-secondary md:p-0" aria-current="page">Brands</a>
+          </li>
+        }
+
+
+
+
+
+
+
+       </ul>
+     </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <ul class="flex items-center justify-center gap-4" >
+        <li>
+          <i  class="fa fa-brands fa-instagram"></i>
+        </li>
+        <li>
+          <i class="fa fa-brands fa-facebook"></i>
+        </li>
+        <li>
+          <i class="fa fa-brands fa-tiktok"></i>
+        </li>
+        <li>
+          <i class="fa fa-brands fa-twitter"></i>
+        </li>
+        <li>
+          <i class="fa fa-brands fa-linkedin"></i>
+        </li>
+        <li>
+          <i class="fa fa-brands fa-youtube"></i>
+        </li>
+      </ul>
+      <ul class=" flex items-center justify-center gap-2">
+        @if (isLoggedIn) {
+          <li>
+            <a (click)="signOut()" routerLink="/auth" routerLinkActive="!text-main">SignOut</a>
+          </li>
+        }
+        @else {
+          <li>
+            <a routerLink="/auth" routerLinkActive="!text-main" [routerLinkActiveOptions]="{ exact: true }">Register</a>
+
+          </li>
+
+          <li>
+            <a routerLink="/auth/login" routerLinkActive="!text-main" >Login</a>
+          </li>
+        }
+
+      </ul>
+
+    </div>
+
+
+
+
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+      </svg>
+  </button>
+  </div>
+</nav>

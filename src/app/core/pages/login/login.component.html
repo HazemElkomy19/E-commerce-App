@@ -1,0 +1,43 @@
+
+
+<form class="max-w-md mx-auto p-8 shadow-lg" (ngSubmit)="login()" [formGroup]="loginForm">
+  <h2 class="text-3xl mb-6">Login</h2>
+  @if (apiError) {
+    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-red-50 mt-2 dark:text-red-400" role="alert">
+      {{apiError}}
+    </div>
+  }
+
+  <div class="relative z-0 w-full mb-5 group">
+    @let emailControl=loginForm.get("email");
+    <input formControlName="email" type="email" name="email" id="floating_email" class="input-style peer" placeholder=" " required />
+    <!-- <app-custom-input [id]="'floating_email'" formControlName="email" [type]="'email'"></app-custom-input> -->
+    <label for="floating_email" class=" label-style peer-focus:font-medium  peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User E-mail</label>
+
+    <app-error-messege [nameControl]="emailControl"></app-error-messege>
+</div>
+
+<div class="relative z-0 w-full mb-5 group">
+  @let passwordControl=loginForm.get("password");
+  <input formControlName="password" type="password" name="password" id="floating_password" class="input-style peer" placeholder=" " required />
+  <label for="floating_password" class=" label-style peer-focus:font-medium  peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User password</label>
+  <app-error-messege [nameControl]="passwordControl"></app-error-messege>
+</div>
+
+
+
+<div class="flex items-center justify-between">
+  <a class=" hover:underline text-red-600 cursor-pointer" routerLink="/auth/forget-password">Forget Password?</a>
+
+  <button type="submit" class="button-style">
+    @if (isCallinApi) {
+      <i class="fa fa-spin  fa-circle-notch"></i>
+    }
+    @else {
+      Submit
+    }
+
+  </button>
+</div>
+
+</form>

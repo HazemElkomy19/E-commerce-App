@@ -1,0 +1,9 @@
+<app-custom-button (click)="handleAddToCart(product._id)" class=" p-4 bg-main rounded-md  text-white mx-auto block text-center  mt-2">
+  @if (isloadingButton) {
+    <i class="fa fa-spin  fa-circle-notch"></i>
+  }
+  @else {
+    <p>Add to Cart</p>
+  }
+
+</app-custom-button>

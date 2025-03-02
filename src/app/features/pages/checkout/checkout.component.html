@@ -1,0 +1,47 @@
+<form [formGroup]="checkoutForm" class="w-[50%] mx-auto">
+  <div class="relative z-0 mb-5 group">
+    @let detailControl=checkoutForm.get("details");
+    <input formControlName="details" type="text" id="floating_details" class="input-style peer" placeholder=" " required />
+    <label for="floating_details" class="label-style peer-focus:text-main">User Details</label>
+    <app-error-messege [nameControl]="detailControl"></app-error-messege>
+  </div>
+
+  <div class="relative z-0 mb-5 group">
+    @let cityControl=checkoutForm.get("city");
+    <input formControlName="city" type="text" id="floating_city" class="input-style peer" placeholder=" " required />
+    <label for="floating_city" class="label-style peer-focus:text-main">User City</label>
+    <app-error-messege [nameControl]="cityControl"></app-error-messege>
+  </div>
+
+  <div class="relative z-0 mb-5 group">
+    @let phoneControl=checkoutForm.get("phone");
+    <input formControlName="phone" type="tel" id="floating_phone" class="input-style peer" placeholder=" " required />
+    <label for="floating_phone" class="label-style peer-focus:text-main">User Phone</label>
+    <app-error-messege [nameControl]="phoneControl"></app-error-messege>
+  </div>
+
+  <!-- Payment Buttons -->
+  <div class="flex justify-between mt-4">
+    <!-- Cash Payment Button -->
+    <button type="button" (click)="CashOrder()" [disabled]="isCallingApiCash || checkoutForm.invalid" class="button-style bg-main">
+      @if (isCallingApiCash) {
+        <span><i class="fa fa-spin fa-circle-notch"></i></span>
+      }
+      @else {
+        <span>Pay with Cash</span>
+      }
+
+
+    </button>
+
+    <!-- Online Payment Button -->
+    <button type="button" (click)="OnlineOrder()" [disabled]="isCallingApi || checkoutForm.invalid" class="button-style dark:bg-blue-500 hover:dark:bg-blue-800">
+      @if (isCallingApi) {
+        <span><i class="fa fa-spin fa-circle-notch"></i></span>
+      }
+      @else {
+        <span>Pay Online</span>
+      }
+    </button>
+  </div>
+</form>

@@ -1,0 +1,3 @@
+<app-custom-button (click)="handleAddToWishlist(productDeatils._id)">
+  <i class="fa-solid fa-heart" [ngClass]="{'text-red-500': productDeatils.isInWishlist, 'text-gray-400': !productDeatils.isInWishlist}"></i>
+</app-custom-button>

@@ -1,0 +1,57 @@
+@if (isLoading) {
+  <div class="fixed inset-0 flex items-center justify-center bg-white/80 z-50">
+    <div class="loader border-4 border-main border-t-transparent w-12 h-12 rounded-full animate-spin"></div>
+  </div>
+}
+@else {
+  @if (wishListDetails?.length !== 0) {
+    <section class="wishlist">
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500">
+          <thead class="text-xs text-main uppercase bg-white">
+            <tr>
+              <th scope="col" class="px-16 py-3">
+                <span class="sr-only">Image</span>
+              </th>
+              <th scope="col" class="px-6 py-3">Product</th>
+              <th scope="col" class="px-6 py-3">Price</th>
+              <th scope="col" class="px-6 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (product of wishListDetails; track $index) {
+
+             <tr class="bg-white border-b hover:bg-gray-50">
+              <td class="p-4">
+                <img [src]="product.imageCover" class="w-16 md:w-32 max-w-full max-h-full" alt="{{ product.title }}">
+              </td>
+              <td class="px-6 py-4 font-semibol text-gray-900">
+                <p class="font-semibol">
+                  {{ product.title }}
+                </p>
+
+
+                <button (click)="removeWishListItem(product._id)" class="font-medium mt-3 text-red-600 hover:underline">
+                  Remove
+                </button>
+              </td>
+              <td class="px-6 py-4 font-semibold text-gray-900">
+                ${{ product.price }}
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex items-center">
+                  <app-wishlist-item [isloadingButton]="isloadingButton[product._id] || false" (fireAddToCart)="addToCart($event)" [product]="product"></app-wishlist-item>
+
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+  @else {
+    <h2 class="text-3xl text-center">No Wishlist Items... Start adding products to your Wishlist!</h2>
+  }
+}

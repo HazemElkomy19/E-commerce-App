@@ -1,0 +1,7 @@
+
+<div class="grid lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3 gap-7 mb-7 mt-3">
+  @for (product of products; track $index) {
+      <app-product-item [isloadingButton]="isloadingButton[product._id] || false" (fireAddToCart)="addToCart($event)" (fireAddToWishlist)="addToWishlist($event)" [product]="product"></app-product-item>
+  }
+</div>
+
